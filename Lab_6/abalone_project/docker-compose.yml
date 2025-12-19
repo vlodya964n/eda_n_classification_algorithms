@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  mlmodel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mlmodel:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - models:/usr/src/app/models
+      - data:/usr/src/app/data
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    image: dashboard:latest
+    ports:
+      - "9050:9050"
+    volumes:
+      - models:/usr/src/app/models
+      - data:/usr/src/app/data
+    depends_on:
+      - mlmodel
+
+volumes:
+  models:
+  data:

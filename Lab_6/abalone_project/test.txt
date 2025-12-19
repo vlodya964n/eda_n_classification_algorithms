@@ -1,0 +1,17 @@
+docker compose up --build
+
+
+http://localhost:9050
+
+curl -X POST http://localhost:5000/predict \
+-H "Content-Type: application/json" \
+-d '{
+  "Sex": "M",
+  "Length": 0.71,
+  "Diameter": 0.555,
+  "Height": 0.195,
+  "Whole_weight": 1.9485,
+  "Shucked_weight": 0.9455,
+  "Viscera_weight": 0.3765,
+  "Shell_weight": 0.495
+}'
